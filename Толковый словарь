@@ -1,0 +1,57 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        string userInputCountries = " ";
+
+        bool isWorking = true;
+
+        Dictionary<string, string> countries = new Dictionary<string, string>();
+
+        AddCountries(countries);
+        ShowCountries(countries);
+
+        while (isWorking)
+        {
+            userInputCountries = InputCountries();
+            CheckingValue(countries, userInputCountries);
+        }
+    }
+
+    private static string InputCountries()
+    {
+        Console.Write("Введите страну, чтобы увидеть ее столицу: ");
+        string userInput = Console.ReadLine();
+        return userInput;
+    }
+
+    private static void AddCountries(Dictionary<string, string> countries)
+    {
+        countries.Add("Айзербаджан", "Баку");
+        countries.Add("Бельгия", "Брюсель");
+        countries.Add("Греция", "Афины");
+        countries.Add("Грузия", "Тбилиси");
+        countries.Add("Испания", "Мадрид");
+        countries.Add("Куба", "Гавана");
+    }
+
+    private static void ShowCountries(Dictionary<string, string> countries)
+    {
+        foreach(var country in countries.Keys)
+        {
+            Console.WriteLine($"Cтрана: {country}");
+        }
+    }
+
+    private static void CheckingValue(Dictionary<string, string> countries, string userInputCountries)
+    {
+        if (countries.ContainsKey(userInputCountries))
+        {
+            Console.WriteLine(countries[userInputCountries]);
+        }
+        else
+        {
+            Console.WriteLine("Такой страны нет в списке. Попробуйте еще раз.");
+        }
+    }
+}
